@@ -1,0 +1,10 @@
+[project]
+name = "hello"
+version = "0.1.0"
+description = "ZETA Server RESTful API hello example, no hardware required"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "cryptography>=45.0.0",
+    "httpx>=0.28.0",
+]
