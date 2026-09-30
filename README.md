@@ -1,8 +1,12 @@
 # zeta-examples
 
 Small, self-contained experiments for getting familiar with
-[ZETA](https://www.zeta-alliance.org/), an LPWAN from ZiFiSense, and its
-server API. Each directory is a uv project.
+[ZETA](https://www.zeta-alliance.org/), an LPWAN from ZiFiSense.
+Each directory is a uv project.
+
+ZETA's stack is closed, and only two of its interfaces are public: the ZETA
+Server's RESTful API at the top and the module's UART at the bottom. Each
+example fakes everything on the far side of one of them.
 
 ```
   [ application ]
@@ -14,7 +18,7 @@ server API. Each directory is a uv project.
   [ Mote ] (relay)
            ▲ 920MHz UNB
   [ module ] (end device)
-           ▲ UART, AT commands
+           ▲ UART, binary frames       ← uart-hello: fakes everything above this
   [ user MCU / sensor ]
 ```
 
@@ -23,6 +27,7 @@ server API. Each directory is a uv project.
 | Name | Fakes | Description |
 |---|---|---|
 | [hello](hello/) | everything below the ZETA Server API | An application and a fake ZETA Server exchanging uplinks and a downlink |
+| [uart-hello](uart-hello/) | everything above the module's UART | An MCU program and a fake TZM902DP module on a pseudo-terminal |
 
 ## How to run
 
@@ -44,8 +49,8 @@ uv sync
   low traffic), ZETA-S (scheduled, for dense urban networks) and ZETA-Lite
   (lighting control).
 - **The stack is closed.** Unlike Wirepas, there is no open-source gateway to
-  run and no gateway API to fake. The public boundary is the ZETA Server's
-  RESTful API, so that is where these examples start.
+  run and no gateway API to fake. The AP is a sealed box that talks IP to the
+  ZETA Server, and the only serial link is between a module and its MCU.
 
 ## ZETA and Wirepas
 
@@ -69,3 +74,6 @@ Compared with [wirepas-examples](https://github.com/gkuga/wirepas-examples):
 - Introduction to ZETA, Techsor, 2018 —
   [PDF](https://www.jasa.or.jp/dl/tech/ZETA_2018-06-29_printed.pdf).
   Architecture, Motes, protocols.
+- ZETA wireless module TZM902DP user manual v1.3, TOPPAN —
+  [PDF](https://www.toptdc.toppan.com/global-data/20230414180127858.pdf).
+  The source for the UART frames in uart-hello.

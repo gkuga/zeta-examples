@@ -26,7 +26,7 @@ fake server that answers the very same endpoints a real one would.
 │           │ 920MHz UNB               │                       │
 │  [ module ] (end device)             │                       │
 │           ▲                          │                       │
-│           │ UART, AT commands        │                       │
+│           │ UART, binary frames      │                       │
 │  [ user MCU / sensor ]               │                       │
 └──────────────────────────────────────────────────────────────┘
 ```

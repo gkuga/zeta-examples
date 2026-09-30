@@ -1,0 +1,9 @@
+[project]
+name = "uart-hello"
+version = "0.1.0"
+description = "Fake TZM902DP ZETA module on a pseudo-terminal, no hardware required"
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+    "pyserial>=3.5",
+]
